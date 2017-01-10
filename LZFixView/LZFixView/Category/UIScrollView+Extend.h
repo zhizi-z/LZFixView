@@ -1,5 +1,5 @@
 //
-//  UIScrollView+ZL.h
+//  UIScrollView+Extend.h
 //  LZFixViewExample
 //
 //  Created by zlh on 16/9/20.
