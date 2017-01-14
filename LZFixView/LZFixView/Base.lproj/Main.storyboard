@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="e0w-62-LYQ"/>
+                        <segue destination="lid-eJ-yf1" kind="relationship" relationship="rootViewController" id="57f-zR-K9i"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ATi-on-Jo2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,6 +149,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-711.20000000000005" y="41.829085457271368"/>
+        </scene>
+        <!--Start View Controller-->
+        <scene sceneID="Odj-lT-JWe">
+            <objects>
+                <viewController id="lid-eJ-yf1" customClass="StartViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pdt-6d-4Wd"/>
+                        <viewControllerLayoutGuide type="bottom" id="pYf-3r-lFa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FxK-SR-Upe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hB3-RA-ZtF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="irJ-f1-MDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-711.20000000000005" y="419.64017991004499"/>
         </scene>
     </scenes>
 </document>

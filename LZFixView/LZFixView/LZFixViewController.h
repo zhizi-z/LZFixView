@@ -9,9 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface LZFixViewController : UIViewController
-- (instancetype)initWithFixTop:(BOOL)fix;
-- (instancetype)initWithFixBtm:(BOOL)fix;
-- (instancetype)initWithFixLeft:(BOOL)fix;
-- (instancetype)initWithFixRight:(BOOL)fix;
-- (instancetype)initWithFixTop:(BOOL)fixTop AndFixBtm:(BOOL)fixBtm;
+@property   (nonatomic, strong) NSArray     *aryValues;
+
+@property   (nonatomic, assign) BOOL        fixTop;
+@property   (nonatomic, assign) BOOL        fixLeft;
+@property   (nonatomic, assign) BOOL        fixBtm;
+@property   (nonatomic, assign) BOOL        fixRight;
+@property   (nonatomic, assign) BOOL        fixInBtm;
+@property   (nonatomic, assign) BOOL        fixInRight;
+
+@property   (nonatomic, assign) BOOL        bounceTable;
+@property   (nonatomic, assign) BOOL        bounceTop;
+@property   (nonatomic, assign) BOOL        bounceLeft;
+@property   (nonatomic, assign) BOOL        bounceBottom;
+@property   (nonatomic, assign) BOOL        bounceRight;
+
 @end

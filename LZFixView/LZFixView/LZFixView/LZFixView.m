@@ -33,6 +33,14 @@
         _fixBottom = NO;
         _fixRight = NO;
         
+        _fixBottomInside = YES;
+        _fixRightInside = NO;
+        
+        _topBounces = NO;
+        _leftBounces = NO;
+        _bottomBounces = NO;
+        _rightBounces = NO;
+        
         [self addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:@"LZFixViewObserver"];
     }
     return self;
@@ -178,13 +186,7 @@
     
     if (self.topView)
     {
-        if (_fixTop)
-        {
-            self.topView.frame = CGRectMake(self.topView.frame.origin.x, 0, self.topView.frame.size.width, self.topView.frame.size.height);
-        }
-        else{
-            [self adjustTopViewLocationForView:self.middleView];
-        }
+        [self adjustTopViewLocationForView:self.middleView];
     }
 }
 
@@ -194,13 +196,7 @@
     
     if (self.leftView)
     {
-        if (_fixLeft)
-        {
-            self.leftView.frame = CGRectMake(0, self.leftView.frame.origin.y, self.leftView.frame.size.width, self.leftView.frame.size.height);
-        }
-        else{
-            [self adjustLeftViewLocationForView:self.middleView];
-        }
+        [self adjustLeftViewLocationForView:self.middleView];
     }
 }
 
@@ -210,13 +206,7 @@
     
     if (self.bottomView)
     {
-        if (_fixBottom || self.middleView.frame.size.height > self.middleView.contentHeight)
-        {
-            self.bottomView.frame = CGRectMake(self.bottomView.frame.origin.x, self.frame.size.height - self.bottomView.frame.size.height, self.bottomView.frame.size.width, self.bottomView.frame.size.height);
-        }
-        else{
-            [self adjustBottomViewLocationForView:self.middleView];
-        }
+        [self adjustBottomViewLocationForView:self.middleView];
     }
 }
 
@@ -226,13 +216,7 @@
     
     if (self.rightView)
     {
-        if (_fixRight || self.middleView.frame.size.width > self.middleView.contentWidth)
-        {
-            self.rightView.frame = CGRectMake(self.frame.size.width - self.rightView.frame.size.width, self.rightView.frame.origin.y, self.rightView.frame.size.width, self.rightView.frame.size.height);
-        }
-        else{
-            [self adjustRightViewLocationForView:self.middleView];
-        }
+        [self adjustRightViewLocationForView:self.middleView];
     }
 }
 
@@ -242,43 +226,19 @@
     if (!scrollView) return;
     if (self.topView)
     {
-        if (self.fixTop)
-        {
-            self.topView.frame = CGRectMake(self.topView.frame.origin.x, 0, self.topView.frame.size.width, self.topView.frame.size.height);
-        }
-        else{
-            [self adjustTopViewLocationForView:scrollView];
-        }
+        [self adjustTopViewLocationForView:scrollView];
     }
     if (self.leftView)
     {
-        if (self.fixLeft)
-        {
-            self.leftView.frame = CGRectMake(0, self.leftView.frame.origin.y, self.leftView.frame.size.width, self.leftView.frame.size.height);
-        }
-        else{
-            [self adjustLeftViewLocationForView:scrollView];
-        }
+        [self adjustLeftViewLocationForView:scrollView];
     }
     if (self.bottomView)
     {
-        if (self.fixBottom)
-        {
-            self.bottomView.frame = CGRectMake(self.bottomView.frame.origin.x, self.frame.size.height - self.bottomView.frame.size.height, self.bottomView.frame.size.width, self.bottomView.frame.size.height);
-        }
-        else{
-            [self adjustBottomViewLocationForView:scrollView];
-        }
+        [self adjustBottomViewLocationForView:scrollView];
     }
-    if (self.rightView && !self.fixRight)
+    if (self.rightView)
     {
-        if (self.fixRight)
-        {
-            self.rightView.frame = CGRectMake(self.frame.size.width - self.rightView.frame.size.width, self.rightView.frame.origin.y, self.rightView.frame.size.width, self.rightView.frame.size.height);
-        }
-        else{
-            [self adjustRightViewLocationForView:scrollView];
-        }
+        [self adjustRightViewLocationForView:scrollView];
     }
 }
 
@@ -286,11 +246,13 @@
 - (void)adjustTopViewLocationForView:(UIScrollView *)scrollView
 {
     CGFloat y = 0;
-    if (scrollView.contentOffsetY > 0){
-        y = -self.topView.frame.size.height - scrollView.contentOffsetY;
-    }
-    else if (scrollView.contentOffsetY > -self.topView.frame.size.height){
+    if (scrollView.contentOffsetY <= - self.topView.frame.size.height && self.topBounces)
+    {
         y = fabs(scrollView.contentOffsetY) - self.topView.frame.size.height;
+    }
+    else if (!self.fixTop && scrollView.contentOffsetY > - self.topView.frame.size.height)
+    {
+        y = -scrollView.contentOffsetY - self.topView.frame.size.height;
     }
     self.topView.frame = CGRectMake(self.topView.frame.origin.x, y, self.topView.frame.size.width, self.topView.frame.size.height);
 }
@@ -298,23 +260,33 @@
 - (void)adjustLeftViewLocationForView:(UIScrollView *)scrollView
 {
     CGFloat x = 0;
-    if (scrollView.contentOffsetX > 0){
-        x = -self.leftView.frame.size.width - scrollView.contentOffsetX;
-    }
-    else if (scrollView.contentOffsetX > -self.leftView.frame.size.width){
+    if (scrollView.contentOffsetX <= - self.leftView.frame.size.width && self.leftBounces)
+    {
         x = fabs(scrollView.contentOffsetX) - self.leftView.frame.size.width;
+    }
+    else if (!self.fixLeft && scrollView.contentOffsetX > - self.leftView.frame.size.width)
+    {
+        x = -self.leftView.frame.size.width - scrollView.contentOffsetX;
     }
     self.leftView.frame = CGRectMake(x, self.leftView.frame.origin.y, self.leftView.frame.size.width, self.leftView.frame.size.height);
 }
 
 - (void)adjustBottomViewLocationForView:(UIScrollView *)scrollView
 {
-    CGFloat y = self.bottomView.frame.origin.y;
-    if (scrollView.contentOffsetY > scrollView.contentHeight - scrollView.frame.size.height + self.bottomView.frame.size.height)
+    CGFloat y = scrollView.frame.size.height - self.bottomView.frame.size.height;
+    if (scrollView.contentHeight < scrollView.frame.size.height - self.bottomView.frame.size.height - self.topView.frame.size.height)
     {
-        y = scrollView.frame.size.height - self.bottomView.frame.size.height;
+        if (!self.fixBottomInside)
+        {
+            y = scrollView.contentHeight - scrollView.contentOffsetY;
+        }
+        else if (self.fixBottomInside && self.bottomBounces)
+        {
+            y = y - scrollView.contentOffsetY - self.topView.frame.size.height;
+        }
     }
-    else{
+    else if ((scrollView.contentOffsetY > scrollView.contentHeight - scrollView.frame.size.height + self.bottomView.frame.size.height && self.bottomBounces) || (!self.fixBottom && scrollView.contentOffsetY <= scrollView.contentHeight - scrollView.frame.size.height + self.bottomView.frame.size.height))
+    {
         y = scrollView.contentHeight - scrollView.contentOffsetY;
     }
     self.bottomView.frame = CGRectMake(self.bottomView.frame.origin.x, y, self.bottomView.frame.size.width, self.bottomView.frame.size.height);
@@ -322,12 +294,20 @@
 
 - (void)adjustRightViewLocationForView:(UIScrollView *)scrollView
 {
-    CGFloat x = self.rightView.frame.origin.x;
-    if (scrollView.contentOffsetX > scrollView.contentWidth - scrollView.frame.size.width + self.rightView.frame.size.width)
+    CGFloat x = scrollView.frame.size.width - self.rightView.frame.size.width;
+    if (scrollView.contentWidth < scrollView.frame.size.width - self.rightView.frame.size.width - self.leftView.frame.size.width)
     {
-        x = scrollView.frame.size.width - self.rightView.frame.size.width;
+        if (!self.fixRightInside)
+        {
+            x = scrollView.contentWidth - scrollView.contentOffsetX;
+        }
+        else if (self.fixRightInside && self.rightBounces)
+        {
+            x = x - scrollView.contentOffsetX - self.leftView.frame.size.width;
+        }
     }
-    else{
+    else if ((scrollView.contentOffsetX > scrollView.contentWidth - scrollView.frame.size.width + self.rightView.frame.size.width && self.rightBounces) || (!self.fixRight && scrollView.contentOffsetX <= scrollView.contentWidth - scrollView.frame.size.width + self.rightView.frame.size.width))
+    {
         x = scrollView.contentWidth - scrollView.contentOffsetX;
     }
     self.rightView.frame = CGRectMake(x, self.rightView.frame.origin.y, self.rightView.frame.size.width, self.rightView.frame.size.height);

@@ -13,18 +13,24 @@
 @property   (nonatomic, strong) UIImageView *topView;
 @property   (nonatomic, strong) UIImageView *bottomview;
 @property   (nonatomic, strong) UIImageView *leftView;
-@property   (nonatomic, strong) UIView *rightView;
+@property   (nonatomic, strong) UIView      *rightView;
 @property   (nonatomic, strong) UITableView *midView;
 @property   (nonatomic, strong) LZFixView   *mainView;
 
-@property   (nonatomic, strong) NSArray     *aryValues;
 @end
 
 @implementation LZFixViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"吸附浮层View效果预览";
+    
     self.mainView.middleView = self.midView;
+    self.mainView.topView    = self.topView;
+    self.mainView.leftView   = self.leftView;
+    self.mainView.bottomView = self.bottomview;
+    self.mainView.rightView  = self.rightView;
 }
 
 - (void)viewDidLayoutSubviews
@@ -42,60 +48,6 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
         //notice1: 在给topView，bottomView, leftView, rightView, middleView赋值之前就要将mainView添加到view上
         [self.view addSubview:self.mainView];
-    }
-    return self;
-}
-
-#pragma mark - public method
-- (instancetype)initWithFixTop:(BOOL)fix
-{
-    if (self = [self init])
-    {
-        self.mainView.topView = self.topView;
-        self.mainView.fixTop = fix;
-    }
-    return self;
-}
-
-- (instancetype)initWithFixBtm:(BOOL)fix
-{
-    if (self = [self init])
-    {
-        self.mainView.bottomView = self.bottomview;
-        self.mainView.fixBottom = fix;
-    }
-    return self;
-}
-
-- (instancetype)initWithFixLeft:(BOOL)fix
-{
-    if (self = [self init])
-    {
-        self.mainView.leftView = self.leftView;
-        self.mainView.fixLeft = fix;
-    }
-    return self;
-}
-
-- (instancetype)initWithFixRight:(BOOL)fix
-{
-    if (self = [self init])
-    {
-        self.mainView.rightView = self.rightView;
-        self.mainView.fixRight = fix;
-    }
-    return self;
-}
-
-- (instancetype)initWithFixTop:(BOOL)fixTop AndFixBtm:(BOOL)fixBtm
-{
-    if (self = [self init])
-    {
-        self.mainView.topView = self.topView;
-        self.mainView.fixTop = fixTop;
-        
-        self.mainView.bottomView = self.bottomview;
-        self.mainView.fixBottom = fixBtm;
     }
     return self;
 }
@@ -170,7 +122,7 @@
     if (!_midView)
     {
         _midView = [[UITableView alloc] initWithFrame:self.mainView.frame];
-        _midView.bounces = NO;
+        //_midView.bounces = NO;
         _midView.delegate = self;
         _midView.dataSource = self;
     }
@@ -187,12 +139,69 @@
     return _mainView;
 }
 
-- (NSArray *)aryValues
+- (void)setFixTop:(BOOL)fixTop
 {
-    if (!_aryValues)
-    {
-        _aryValues = [NSArray arrayWithObjects:@"教父 The Godfathertop", @"肖申克的救赎 The Shawshank Redemption", @"教父续集 The Godfather: Part II", @"黄金三镖客 Buono, il brutto, il cattivo, Il", @"低俗小说 Pulp Fiction", @"辛德勒的名单", @"星球大战5：帝国反击战 Star Wars: Episode V - The Empire Strikes Back", @"飞越疯人院 One Flew Over the Cuckoo's Nest", @"卡萨布兰卡 Casablanca", @"魔戒3:王者归来 The Lord of the Rings: The Return of the King", @"七武士 Shichinin no samurai", @"星球大战 Star Wars", @"十二怒汉 12 Angry Men", @"后窗 Rear Window", @"好家伙 Goodfellas", @"夺宝奇兵 Raiders of the Lost Ark", @"魔戒1：魔戒现身 The Lord of the Rings: The Fellowship of the Ring", @"上帝之城 Cidade de Deus", @"西部往事 C'era una volta il West", @"普通嫌疑犯 The Usual Suspects",  @"惊魂记 Psycho", @"奇爱博士 Dr. Strange love", @"西北偏北 North by Northwest", @"公民凯恩 Citizen Kane", @"沉默的羔羊 The Silence of the Lambs", @"魔戒2:双塔奇兵 The Lord of the Rings: The Two Towers", @"记忆碎片 Memento", @"搏击俱乐部Fight Club", @"日落大道 Sunset Blvd", @"阿拉伯的劳伦斯 Lawrence of Arabia", nil];
-    }
-    return _aryValues;
+    _fixTop = fixTop;
+    self.mainView.fixTop = fixTop;
+}
+
+- (void)setFixLeft:(BOOL)fixLeft
+{
+    _fixLeft = fixLeft;
+    self.mainView.fixLeft = fixLeft;
+}
+
+- (void)setFixBtm:(BOOL)fixBtm
+{
+    _fixBtm = fixBtm;
+    self.mainView.fixBottom = fixBtm;
+}
+
+- (void)setFixRight:(BOOL)fixRight
+{
+    _fixRight = fixRight;
+    self.mainView.fixRight = fixRight;
+}
+
+- (void)setFixInBtm:(BOOL)fixInBtm
+{
+    _fixInBtm = fixInBtm;
+    self.mainView.fixBottomInside = fixInBtm;
+}
+
+- (void)setFixInRight:(BOOL)fixInRight
+{
+    _fixInRight = fixInRight;
+    self.mainView.fixRightInside = fixInRight;
+}
+
+- (void)setBounceTable:(BOOL)bounceTable
+{
+    _bounceTable = bounceTable;
+    self.midView.bounces = bounceTable;
+}
+
+- (void)setBounceTop:(BOOL)bounceTop
+{
+    _bounceTop = bounceTop;
+    self.mainView.topBounces = bounceTop;
+}
+
+- (void)setBounceLeft:(BOOL)bounceLeft
+{
+    _bounceLeft = bounceLeft;
+    self.mainView.leftBounces = bounceLeft;
+}
+
+- (void)setBounceBottom:(BOOL)bounceBottom
+{
+    _bounceBottom = bounceBottom;
+    self.mainView.bottomBounces = bounceBottom;
+}
+
+- (void)setBounceRight:(BOOL)bounceRight
+{
+    _bounceRight = bounceRight;
+    self.mainView.rightBounces = bounceRight;
 }
 @end
