@@ -33,7 +33,7 @@
         _fixBottom = NO;
         _fixRight = NO;
         
-        _fixBottomInside = YES;
+        _fixBottomInside = NO;
         _fixRightInside = NO;
         
         _topBounces = NO;
