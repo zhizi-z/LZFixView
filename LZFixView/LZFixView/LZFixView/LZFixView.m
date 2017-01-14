@@ -10,10 +10,6 @@
 #import "UIScrollView+Extend.h"
 
 @interface LZFixView()
-@property (assign, nonatomic)   CGFloat topY;
-@property (assign, nonatomic)   CGFloat leftX;
-@property (assign, nonatomic)   CGFloat bottomY;
-@property (assign, nonatomic)   CGFloat rightX;
 @end
 
 @implementation LZFixView
