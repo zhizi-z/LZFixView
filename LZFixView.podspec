@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LZFixView"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "absorption views"
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ A new verison for absorption views to top, left, bottom, or right of an instance
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/zhizi-z/LZFixView.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/zhizi-z/LZFixView.git", :tag => "0.0.2" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
