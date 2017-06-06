@@ -39,8 +39,8 @@ A new verison for absorption views to top, left, bottom, or right of an instance
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  #s.license      = "MIT"
+   s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -65,7 +65,7 @@ A new verison for absorption views to top, left, bottom, or right of an instance
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, "7.0"
+   s.platform     = :ios, "7.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -91,7 +91,7 @@ A new verison for absorption views to top, left, bottom, or right of an instance
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "LZFixView/LZFixView/LZFixView/**/*.{h,m}"
+  s.source_files  = "LZFixView/LZFixView/**/*.{h,m}"
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -133,6 +133,6 @@ A new verison for absorption views to top, left, bottom, or right of an instance
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  # s.dependency ""
 
 end
