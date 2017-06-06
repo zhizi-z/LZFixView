@@ -91,7 +91,7 @@ A new verison for absorption views to top, left, bottom, or right of an instance
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "LZFixView", "LZFixView/LZFixView/**/*.{h,m}"
+  s.source_files  = "LZFixView/LZFixView/LZFixView/**/*.{h,m}"
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -117,7 +117,7 @@ A new verison for absorption views to top, left, bottom, or right of an instance
   #  the lib prefix of their name.
   #
 
-  # s.framework  = "SomeFramework"
+   s.framework  = "UIKit"
   # s.frameworks = "SomeFramework", "AnotherFramework"
 
   # s.library   = "iconv"
