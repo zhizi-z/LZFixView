@@ -40,7 +40,7 @@ A new verison for absorption views to top, left, bottom, or right of an instance
   #
 
   #s.license      = "MIT"
-   s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+s.license      = { :type => "MIT"}
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
