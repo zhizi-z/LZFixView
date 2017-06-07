@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D50633D91EE6943800E61197 /* UIScrollView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D50633D81EE6943800E61197 /* UIScrollView+Extend.m */; };
+		D50E72101EE79452009EC323 /* UIScrollView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = D50E720D1EE79452009EC323 /* UIScrollView+Extend.m */; };
+		D50E72111EE79452009EC323 /* LZFixView.m in Sources */ = {isa = PBXBuildFile; fileRef = D50E720F1EE79452009EC323 /* LZFixView.m */; };
 		D51360881E1EC1EC00C872DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D51360871E1EC1EC00C872DA /* main.m */; };
 		D513608B1E1EC1EC00C872DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D513608A1E1EC1EC00C872DA /* AppDelegate.m */; };
 		D51360931E1EC1EC00C872DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51360921E1EC1EC00C872DA /* Assets.xcassets */; };
 		D51360961E1EC1EC00C872DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51360941E1EC1EC00C872DA /* LaunchScreen.storyboard */; };
-		D51360A01E1EC53D00C872DA /* LZFixView.m in Sources */ = {isa = PBXBuildFile; fileRef = D513609F1E1EC53D00C872DA /* LZFixView.m */; };
 		D51360C71E1ED24400C872DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51360C51E1ED24400C872DA /* Main.storyboard */; };
 		D51360CA1E1ED9CF00C872DA /* LZFixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51360C91E1ED9CF00C872DA /* LZFixViewController.m */; };
 		D51360D21E1F166700C872DA /* leftPic.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D51360D11E1F166700C872DA /* leftPic.jpeg */; };
@@ -24,8 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D50633D71EE6943800E61197 /* UIScrollView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Extend.h"; sourceTree = "<group>"; };
-		D50633D81EE6943800E61197 /* UIScrollView+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Extend.m"; sourceTree = "<group>"; };
+		D50E720C1EE79452009EC323 /* UIScrollView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Extend.h"; sourceTree = "<group>"; };
+		D50E720D1EE79452009EC323 /* UIScrollView+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Extend.m"; sourceTree = "<group>"; };
+		D50E720E1EE79452009EC323 /* LZFixView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZFixView.h; sourceTree = "<group>"; };
+		D50E720F1EE79452009EC323 /* LZFixView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZFixView.m; sourceTree = "<group>"; };
 		D51360831E1EC1EC00C872DA /* LZFixView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LZFixView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51360871E1EC1EC00C872DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D51360891E1EC1EC00C872DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -33,8 +35,6 @@
 		D51360921E1EC1EC00C872DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D51360951E1EC1EC00C872DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D51360971E1EC1EC00C872DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D513609E1E1EC53D00C872DA /* LZFixView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZFixView.h; sourceTree = "<group>"; };
-		D513609F1E1EC53D00C872DA /* LZFixView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZFixView.m; sourceTree = "<group>"; };
 		D51360C61E1ED24400C872DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D51360C81E1ED9CF00C872DA /* LZFixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZFixViewController.h; sourceTree = "<group>"; };
 		D51360C91E1ED9CF00C872DA /* LZFixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZFixViewController.m; sourceTree = "<group>"; };
@@ -60,26 +60,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D50633D51EE6943800E61197 /* Category */ = {
+		D50E720A1EE79452009EC323 /* LZFixViewClass */ = {
 			isa = PBXGroup;
 			children = (
-				D50633D61EE6943800E61197 /* ThirdCategory */,
-				D50633D71EE6943800E61197 /* UIScrollView+Extend.h */,
-				D50633D81EE6943800E61197 /* UIScrollView+Extend.m */,
+				D50E720B1EE79452009EC323 /* Category */,
+				D50E720E1EE79452009EC323 /* LZFixView.h */,
+				D50E720F1EE79452009EC323 /* LZFixView.m */,
 			);
-			path = Category;
+			name = LZFixViewClass;
+			path = ../LZFixViewClass;
 			sourceTree = "<group>";
 		};
-		D50633D61EE6943800E61197 /* ThirdCategory */ = {
+		D50E720B1EE79452009EC323 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				D50E720C1EE79452009EC323 /* UIScrollView+Extend.h */,
+				D50E720D1EE79452009EC323 /* UIScrollView+Extend.m */,
 			);
-			path = ThirdCategory;
+			path = Category;
 			sourceTree = "<group>";
 		};
 		D513607A1E1EC1EC00C872DA = {
 			isa = PBXGroup;
 			children = (
+				D50E720A1EE79452009EC323 /* LZFixViewClass */,
 				D51360851E1EC1EC00C872DA /* LZFixView */,
 				D51360841E1EC1EC00C872DA /* Products */,
 			);
@@ -96,7 +100,6 @@
 		D51360851E1EC1EC00C872DA /* LZFixView */ = {
 			isa = PBXGroup;
 			children = (
-				D513609D1E1EC53D00C872DA /* LZFixView */,
 				D51360891E1EC1EC00C872DA /* AppDelegate.h */,
 				D513608A1E1EC1EC00C872DA /* AppDelegate.m */,
 				D5EA92BB1E297DC70060D818 /* StartViewController.h */,
@@ -124,16 +127,6 @@
 				D51360871E1EC1EC00C872DA /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D513609D1E1EC53D00C872DA /* LZFixView */ = {
-			isa = PBXGroup;
-			children = (
-				D50633D51EE6943800E61197 /* Category */,
-				D513609E1E1EC53D00C872DA /* LZFixView.h */,
-				D513609F1E1EC53D00C872DA /* LZFixView.m */,
-			);
-			path = LZFixView;
 			sourceTree = "<group>";
 		};
 		D5EA92B71E2963870060D818 /* LZCheckButton */ = {
@@ -221,12 +214,12 @@
 			files = (
 				D51360CA1E1ED9CF00C872DA /* LZFixViewController.m in Sources */,
 				D5EA92BA1E2963870060D818 /* LZCheckButton.m in Sources */,
+				D50E72101EE79452009EC323 /* UIScrollView+Extend.m in Sources */,
 				D5FA43C21E298A3A005CAA8F /* DataViewController.m in Sources */,
 				D513608B1E1EC1EC00C872DA /* AppDelegate.m in Sources */,
 				D5EA92BD1E297DC70060D818 /* StartViewController.m in Sources */,
-				D51360A01E1EC53D00C872DA /* LZFixView.m in Sources */,
+				D50E72111EE79452009EC323 /* LZFixView.m in Sources */,
 				D51360881E1EC1EC00C872DA /* main.m in Sources */,
-				D50633D91EE6943800E61197 /* UIScrollView+Extend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -55,7 +55,6 @@ s.license      = { :type => "MIT"}
 
   s.author             = { "zhiziZ" => "Leehua_Zhou@163.com" }
   # Or just: s.author    = "zhoulihua"
-  # s.authors            = { "zhoulihua" => "lihua@eastmoney.com" }
   # s.social_media_url   = "http://twitter.com/zhoulihua"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,7 +90,7 @@ s.license      = { :type => "MIT"}
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "LZFixView/LZFixView/**/*.{h,m}"
+  s.source_files  = "LZFixViewClass/**/*.{h,m}"
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
