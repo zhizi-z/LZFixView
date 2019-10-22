@@ -47,6 +47,12 @@
     [self removeObserver:self forKeyPath:@"frame" context:@"LZFixViewObserver"];
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self adjustSideViewsLocationForView:self.middleView];
+}
+
 #pragma mark - observer
 - (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString*, id> *)change context:(nullable void *)context {
     if ([keyPath isEqualToString:@"frame"])
@@ -71,6 +77,13 @@
             offsetY = offsetY + _topView.frame.size.height;
         }
         self.middleView.contentInsetTop = topView.frame.size.height;
+        
+        CGFloat actualHeight = self.middleView.frame.size.height - self.middleView.contentInsetTop - self.middleView.contentInsetBottom;
+        CGFloat maskHeight = self.middleView.contentSize.height - actualHeight;//显示在表格外面的内容高度；
+        if (offsetY > maskHeight && maskHeight > 0)
+        {
+            offsetY = self.middleView.contentSize.height - actualHeight;
+        }        
         self.middleView.contentOffsetY = offsetY - topView.frame.size.height;
         if (!self.fixTop)
         {
@@ -182,7 +195,13 @@
     
     if (self.topView)
     {
-        [self adjustTopViewLocationForView:self.middleView];
+        if (_fixTop)
+        {
+            self.topView.frame = CGRectMake(self.topView.frame.origin.x, 0, self.topView.frame.size.width, self.topView.frame.size.height);
+        }
+        else{
+            [self adjustTopViewLocationForView:self.middleView];
+        }
     }
 }
 
@@ -192,7 +211,13 @@
     
     if (self.leftView)
     {
-        [self adjustLeftViewLocationForView:self.middleView];
+        if (_fixLeft)
+        {
+            self.leftView.frame = CGRectMake(0, self.leftView.frame.origin.y, self.leftView.frame.size.width, self.leftView.frame.size.height);
+        }
+        else{
+            [self adjustLeftViewLocationForView:self.middleView];
+        }
     }
 }
 
@@ -202,7 +227,13 @@
     
     if (self.bottomView)
     {
-        [self adjustBottomViewLocationForView:self.middleView];
+        if (_fixBottom || self.middleView.frame.size.height > self.middleView.contentHeight)
+        {
+            self.bottomView.frame = CGRectMake(self.bottomView.frame.origin.x, self.frame.size.height - self.bottomView.frame.size.height, self.bottomView.frame.size.width, self.bottomView.frame.size.height);
+        }
+        else{
+            [self adjustBottomViewLocationForView:self.middleView];
+        }
     }
 }
 
@@ -212,7 +243,13 @@
     
     if (self.rightView)
     {
-        [self adjustRightViewLocationForView:self.middleView];
+        if (_fixRight || self.middleView.frame.size.width > self.middleView.contentWidth)
+        {
+            self.rightView.frame = CGRectMake(self.frame.size.width - self.rightView.frame.size.width, self.rightView.frame.origin.y, self.rightView.frame.size.width, self.rightView.frame.size.height);
+        }
+        else{
+            [self adjustRightViewLocationForView:self.middleView];
+        }
     }
 }
 
@@ -220,22 +257,49 @@
 - (void)adjustSideViewsLocationForView:(UIScrollView *)scrollView
 {
     if (!scrollView) return;
-    if (self.topView)
-    {
-        [self adjustTopViewLocationForView:scrollView];
-    }
-    if (self.leftView)
-    {
-        [self adjustLeftViewLocationForView:scrollView];
-    }
-    if (self.bottomView)
-    {
-        [self adjustBottomViewLocationForView:scrollView];
-    }
-    if (self.rightView)
-    {
-        [self adjustRightViewLocationForView:scrollView];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        scrollView.frame = self.bounds;
+        if (self.topView)
+        {
+            if (self.fixTop)
+            {
+                self.topView.frame = CGRectMake(self.topView.frame.origin.x, 0, self.topView.frame.size.width, self.topView.frame.size.height);
+            }
+            else{
+                [self adjustTopViewLocationForView:scrollView];
+            }
+        }
+        if (self.leftView)
+        {
+            if (self.fixLeft)
+            {
+                self.leftView.frame = CGRectMake(0, self.leftView.frame.origin.y, self.leftView.frame.size.width, self.leftView.frame.size.height);
+            }
+            else{
+                [self adjustLeftViewLocationForView:scrollView];
+            }
+        }
+        if (self.bottomView)
+        {
+            if (self.fixBottom)
+            {
+                self.bottomView.frame = CGRectMake(self.bottomView.frame.origin.x, self.frame.size.height - self.bottomView.frame.size.height, self.bottomView.frame.size.width, self.bottomView.frame.size.height);
+            }
+            else{
+                [self adjustBottomViewLocationForView:scrollView];
+            }
+        }
+        if (self.rightView && !self.fixRight)
+        {
+            if (self.fixRight)
+            {
+                self.rightView.frame = CGRectMake(self.frame.size.width - self.rightView.frame.size.width, self.rightView.frame.origin.y, self.rightView.frame.size.width, self.rightView.frame.size.height);
+            }
+            else{
+                [self adjustRightViewLocationForView:scrollView];
+            }
+        }
+    });
 }
 
 #pragma mark - private methods
